@@ -33,7 +33,7 @@ export default function Home() {
       <nav className="flex justify-between items-center p-8 max-w-6xl mx-auto">
         <div className="flex items-center gap-2 font-bold text-xl">
           <Code2 className="text-blue-500" />
-          <span>DevPortfolio</span>
+          <span>Veysel Kınacı</span>
         </div>
         <div className="flex gap-6 text-gray-400 text-sm font-medium">
           <a href="#projects" className="hover:text-white transition-colors">Projeler</a>
@@ -52,9 +52,11 @@ export default function Home() {
         </h1>
 
         <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-          Merhaba, ben <span className="text-white font-medium">Veysel</span>. 
-          Ölçeklenebilir web uygulamaları ve kullanıcı odaklı çözümler geliştiren bir geliştiriciyim.
-        </p>
+  Merhaba, ben <span className="text-white font-medium">Veysel</span>. 
+  Unity ile sürükleyici oyun deneyimleri, yüksek performanslı mekanikler ve 
+  multiplayer çözümler geliştiren bir <span className="text-blue-400">Game Developer</span>'ım. 
+  Fikirleri interaktif dünyalara dönüştürmeyi seviyorum.
+</p>
 
         <div className="flex flex-wrap justify-center gap-4">
           <a href="https://github.com/polaris3535" target="_blank" className="p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-blue-500 hover:text-blue-500 transition-all">
