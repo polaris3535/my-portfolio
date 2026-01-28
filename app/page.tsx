@@ -3,22 +3,22 @@ import { Github, Linkedin, Mail, ExternalLink, Code2 } from 'lucide-react';
 
 const projects = [
   {
-    title: "E-Ticaret Arayüzü",
-    description: "Next.js ve Tailwind CSS kullanarak hazırladığım modern bir alışveriş sitesi tasarımı.",
-    tags: ["Next.js", "React", "Tailwind"],
-    link: "#"
+    title: "My Sweet Hotel",
+    description: "Unity ile geliştirilmiş, sürükleyici bir otel yönetim simülasyonu. Kaynak yönetimi ve müşteri memnuniyeti odaklı mekanikler içerir.",
+    tags: ["Unity", "C#", "Management Sim"],
+    link: "https://play.google.com/store/apps/details?id=com.vepolgames.mysweethotel"
   },
   {
-    title: "Hava Durumu Uygulaması",
-    description: "API kullanarak anlık hava durumu verilerini çeken interaktif bir uygulama.",
-    tags: ["JavaScript", "API", "CSS"],
-    link: "#"
+    title: "3D Ball Runner",
+    description: "Hız ve refleks tabanlı bir arcade oyunu. Dinamik engel sistemi ve akıcı top fiziği üzerine kurulu bir oynanış sunar.",
+    tags: ["Unity", "3D Physics", "Arcade"],
+    link: "https://play.google.com/store/apps/details?id=com.VepolGames.BallRunner3D"
   },
   {
-    title: "Kişisel Blog",
-    description: "Markdown destekli, hızlı ve SEO uyumlu bir blog taslağı.",
-    tags: ["TypeScript", "Next.js"],
-    link: "#"
+    title: "Powar",
+    description: "Gerçek zamanlı rekabet odaklı, online çok oyunculu (multiplayer) bir deneyim. Oyuncuların birbirleriyle etkileşime girdiği, düşük gecikmeli (low-latency) ağ yapısı üzerine kurgulanmış bir mobil oyun.",
+    tags: ["Unity", "C#", "Online Multiplayer", "Real-time Networking"],
+    link: "https://play.google.com/store/apps/details?id=com.VepolGames.Powar"
   }
 ];
 
@@ -33,7 +33,7 @@ export default function Home() {
         </div>
         <div className="flex gap-6 text-gray-400 text-sm font-medium">
           <a href="#projects" className="hover:text-white transition-colors">Projeler</a>
-          <a href="mailto:email@adresiniz.com" className="hover:text-white transition-colors">İletişim</a>
+          <a href="mailto:veyselkinaci2000@gmail.com" className="hover:text-white transition-colors">İletişim</a>
         </div>
       </nav>
 
