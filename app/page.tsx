@@ -1,24 +1,28 @@
 import React from 'react';
+import Image from 'next/image';
 import { Github, Linkedin, Mail, ExternalLink, Code2 } from 'lucide-react';
 
-const projects = [
+const publishedGames = [
   {
     title: "My Sweet Hotel",
+    image: "/hotel.png",
     description: "Unity ile geliştirilmiş, sürükleyici bir otel yönetim simülasyonu. Kaynak yönetimi ve müşteri memnuniyeti odaklı mekanikler içerir.",
-    tags: ["Unity", "C#", "Management Sim"],
-    link: "https://play.google.com/store/apps/details?id=com.vepolgames.mysweethotel"
+    tech: ["Unity", "C#", "Management Sim"],
+    link: "https://play.google.com/store/apps/details?id=com.vepolgames.MySweetHotel"
   },
   {
     title: "3D Ball Runner",
+    image: "/runner.png",
     description: "Hız ve refleks tabanlı bir arcade oyunu. Dinamik engel sistemi ve akıcı top fiziği üzerine kurulu bir oynanış sunar.",
-    tags: ["Unity", "3D Physics", "Arcade"],
-    link: "https://play.google.com/store/apps/details?id=com.VepolGames.BallRunner3D"
+    tech: ["Unity", "3D Physics", "Arcade"],
+    link: "https://play.google.com/store/apps/details?id=com.vepolgames.BALLRUNNER3D"
   },
   {
     title: "Powar",
+    image: "/powar.png",
     description: "Gerçek zamanlı rekabet odaklı, online çok oyunculu (multiplayer) bir deneyim. Oyuncuların birbirleriyle etkileşime girdiği, düşük gecikmeli (low-latency) ağ yapısı üzerine kurgulanmış bir mobil oyun.",
-    tags: ["Unity", "C#", "Online Multiplayer", "Real-time Networking"],
-    link: "https://play.google.com/store/apps/details?id=com.VepolGames.Powar"
+    tech: ["Unity", "C#", "Online Multiplayer", "Real-time Networking"],
+    link: "https://play.google.com/store/apps/details?id=com.vepolgames.FightGame"
   }
 ];
 
@@ -73,26 +77,28 @@ export default function Home() {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <div key={index} className="group p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl hover:border-blue-500/50 transition-all duration-300">
-              <div className="flex justify-between items-start mb-4">
-                <div className="p-3 bg-blue-500/10 rounded-lg text-blue-500">
-                  <Code2 size={20} />
-                </div>
-                <a href={project.link} className="text-gray-500 hover:text-white transition-colors">
-                  <ExternalLink size={20} />
-                </a>
+          {publishedGames.map((game, i) => (
+            <div key={i} className="flex flex-col md:flex-row gap-6 p-6 border rounded-lg hover:shadow-lg transition">
+              {/* Resim Alanı */}
+              <div className="relative w-full md:w-48 h-48 flex-shrink-0">
+                <Image 
+                  src={game.image} 
+                  alt={game.title}
+                  fill
+                  className="object-cover rounded-md"
+                />
               </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                {project.description}
-              </p>
-              <div className="flex gap-2 flex-wrap">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-zinc-800 text-gray-300 rounded">
-                    {tag}
-                  </span>
-                ))}
+              
+              {/* Metin Alanı */}
+              <div className="flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl font-bold">{game.title}</h3>
+                  <div className="flex gap-2 my-2">
+                    {game.tech.map(t => <span key={t} className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">{t}</span>)}
+                  </div>
+                  <p className="text-gray-700 mb-4">{game.description}</p>
+                </div>
+                <a href={game.link} target="_blank" className="text-blue-600 hover:underline font-medium">Play Store'da İncele →</a>
               </div>
             </div>
           ))}
