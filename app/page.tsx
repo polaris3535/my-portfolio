@@ -134,8 +134,8 @@ export default function Home() {
 
       {/* Footer / Küçük Bilgi */}
       <footer className="border-t border-zinc-900 py-10 text-center text-gray-500 text-sm">
-        © 2026 Built with Next.js & Tailwind CSS
-      </footer>
+  © {new Date().getFullYear()} • Veysel Kınacı • Unity Game Developer
+</footer>
     </main>
   );
 }
