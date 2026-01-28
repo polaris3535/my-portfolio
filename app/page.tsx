@@ -53,13 +53,13 @@ export default function Home() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <a href="https://github.com/kullaniciadi" target="_blank" className="p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-blue-500 hover:text-blue-500 transition-all">
+          <a href="https://github.com/polaris3535" target="_blank" className="p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-blue-500 hover:text-blue-500 transition-all">
             <Github size={24} />
           </a>
-          <a href="https://linkedin.com/in/kullaniciadi" target="_blank" className="p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-blue-500 hover:text-blue-500 transition-all">
+          <a href="https://www.linkedin.com/in/veysel-kınacı-0246b9268/" target="_blank" className="p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-blue-500 hover:text-blue-500 transition-all">
             <Linkedin size={24} />
           </a>
-          <a href="mailto:email@adresiniz.com" className="p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-blue-500 hover:text-blue-500 transition-all">
+          <a href="mailto:veyselkinaci2000@gmail.com" className="p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-blue-500 hover:text-blue-500 transition-all">
             <Mail size={24} />
           </a>
         </div>
