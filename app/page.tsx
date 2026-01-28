@@ -76,33 +76,60 @@ export default function Home() {
           Öne Çıkan Projeler
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {publishedGames.map((game, i) => (
-            <div key={i} className="flex flex-col md:flex-row gap-6 p-6 border rounded-lg hover:shadow-lg transition">
-              {/* Resim Alanı */}
-              <div className="relative w-full md:w-48 h-48 flex-shrink-0">
-                <Image 
-                  src={game.image} 
-                  alt={game.title}
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-              
-              {/* Metin Alanı */}
-              <div className="flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl font-bold">{game.title}</h3>
-                  <div className="flex gap-2 my-2">
-                    {game.tech.map(t => <span key={t} className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">{t}</span>)}
-                  </div>
-                  <p className="text-gray-700 mb-4">{game.description}</p>
-                </div>
-                <a href={game.link} target="_blank" className="text-blue-600 hover:underline font-medium">Play Store'da İncele →</a>
-              </div>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {publishedGames.map((game, i) => (
+    <div key={i} className="group flex flex-col bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-500 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.2)]">
+      
+      {/* Resim Alanı */}
+      <div className="relative w-full aspect-video overflow-hidden">
+        <Image 
+          src={game.image} 
+          alt={game.title}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        {/* Resim üzerine hafif bir karanlık katman (Metinlerin daha iyi okunması için isteğe bağlı) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-60" />
+      </div>
+      
+      {/* Metin Alanı */}
+      <div className="p-6 flex flex-col flex-grow">
+        <div>
+          <div className="flex justify-between items-start mb-3">
+            <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+              {game.title}
+            </h3>
+            <ExternalLink size={18} className="text-zinc-500 group-hover:text-blue-400" />
+          </div>
+          
+          {/* Tech Etiketleri - Daha modern bir görünüm */}
+          <div className="flex flex-wrap gap-2 mb-5">
+            {game.tech.map(t => (
+              <span key={t} className="bg-blue-500/10 text-blue-400 text-[10px] uppercase tracking-widest font-bold px-2.5 py-1 rounded-md border border-blue-500/20">
+                {t}
+              </span>
+            ))}
+          </div>
+          
+          <p className="text-gray-400 text-sm leading-relaxed mb-6">
+            {game.description}
+          </p>
         </div>
+
+        {/* Buton - Modern Glassmorphism Efekti */}
+        <div className="mt-auto">
+          <a 
+            href={game.link} 
+            target="_blank" 
+            className="flex items-center justify-center w-full bg-blue-600 text-white py-3 rounded-xl text-sm font-bold hover:bg-blue-500 transition-all duration-300 shadow-lg shadow-blue-900/20 gap-2"
+          >
+            Play Store'da İncele
+          </a>
+        </div>
+      </div>
+    </div>
+  ))} 
+</div>
       </section>
 
       {/* Footer / Küçük Bilgi */}
