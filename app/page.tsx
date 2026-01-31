@@ -87,7 +87,7 @@ export default function Home() {
         </h2>
 
         {/* Mobilde gap-6, Masaüstünde gap-8 */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {publishedGames.map((game, i) => {
             const isPublished = game.androidLink || game.iosLink;
 
@@ -128,7 +128,7 @@ export default function Home() {
                     </div>
 
                     {/* Mobilde 2 satır, Masaüstünde 3 satır sınırlaması */}
-                    <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-5 md:mb-6 line-clamp-4 md:line-clamp-4">
+                    <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-5 md:mb-6 line-clamp-2 md:line-clamp-3">
                       {game.description}
                     </p>
                   </div>
