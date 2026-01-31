@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Github, Linkedin, Mail, Gamepad2, Star, BookOpen } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
 // --- 1. FONKSİYON: GITHUB VERİLERİNİ ÇEKER ---
 async function getGithubStats() {
   try {
@@ -29,10 +30,12 @@ async function getGithubStats() {
 // --- 2. FONKSİYON: BİZİM YAZDIĞIMIZ OYUN API'SİNİ ÇEKER ---
 async function getGames() {
   try {
-    // DİKKAT: Next.js server tarafında çalışırken tam adres (http://localhost:3000) ister.
-    // Projeyi yayına aldığında bu adresi gerçek site adresiyle değiştirmen gerekecek.
-    const res = await fetch('http://localhost:3000/api/oyunlar', { 
-      cache: 'no-store' // Veriyi önbellekleme, her defasında taze veri çek (Canlı test için)
+    // URL'yi ayarlardan çekiyoruz. Eğer ayar bulamazsa (güvenlik için) yine localhost varsayıyoruz.
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
+    // Backtick (``) işareti kullandığımıza dikkat et! Değişkeni string içine gömüyoruz.
+    const res = await fetch(`${apiUrl}/api/oyunlar`, { 
+      cache: 'no-store' 
     });
 
     if (!res.ok) {
@@ -42,7 +45,6 @@ async function getGames() {
     return res.json();
   } catch (error) {
     console.error("Oyun API Hatası:", error);
-    // Hata olursa boş dizi döndür ki site çökmesin
     return [];
   }
 }
