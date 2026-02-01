@@ -1,47 +1,30 @@
 import { NextResponse } from 'next/server';
+import { sql } from '@vercel/postgres';
 
-// Bu veri normalde veritabanından gelir ama şimdilik burada tutuyoruz (Mock Data)
-const games = [
-  {
-    id: 1,
-    title: "My Sweet Hotel",
-    image: "/hotel.png",
-    description: "Unity ile geliştirilmiş, sürükleyici bir otel yönetim simülasyonu.",
-    tech: ["Unity", "C#", "Management Sim"],
-    androidLink: "https://play.google.com/...",
-    iosLink: "https://apps.apple.com/..."
-  },
-  {
-    id: 2,
-    title: "3D Ball Runner",
-    image: "/runner.png",
-    description: "Hız ve refleks tabanlı bir arcade oyunu.",
-    tech: ["Unity", "3D Physics", "Arcade"],
-    androidLink: "https://play.google.com/...",
-    iosLink: ""
-  },
-  {
-    id: 3,
-    title: "Powar",
-    image: "/powar.png",
-    description: "Gerçek zamanlı rekabet odaklı multiplayer deneyim.",
-    tech: ["Unity", "C#", "Online Multiplayer"],
-    androidLink: "https://play.google.com/...",
-    iosLink: ""
-  },
-  {
-    id: 4,
-    title: "Match 3D",
-    image: "/match.png",
-    description: "Geliştirme aşamasında yeni bir Match deneyimi.",
-    tech: ["Unity", "C#"],
-    androidLink: "",
-    iosLink: ""
-  }
-];
+// Bu satır, sayfanın her seferinde veritabanına gitmesini sağlar (Cache'i kapatır)
+export const dynamic = 'force-dynamic';
 
-// GET İsteği: Biri bu adrese girerse ne döneceğiz?
 export async function GET() {
-  // Aşçı yemeği hazırladı, tepsiye koydu (JSON) ve gönderiyor
-  return NextResponse.json(games);
+  try {
+    // 1. Veritabanına "Sorgu" atıyoruz: "games tablosundaki her şeyi getir"
+    const result = await sql`SELECT * FROM games ORDER BY id ASC`;
+    
+    // 2. Veritabanından gelen veriyi Frontend'in anlayacağı dile çeviriyoruz
+    // Veritabanında tech: "Unity, C#" (string) olarak duruyor, 
+    // biz onu ["Unity", "C#"] (array) yapıyoruz.
+    const formattedGames = result.rows.map(game => ({
+      ...game,
+      tech: game.tech ? game.tech.split(',').map((t: string) => t.trim()) : [],
+      // Veritabanındaki alt_çizgili isimleri (snake_case) 
+      // JavaScript'in sevdiği camelCase haline getiriyoruz
+      androidLink: game.android_link,
+      iosLink: game.ios_link
+    }));
+
+    // 3. Hazırladığımız listeyi JSON olarak dünyaya sunuyoruz
+    return NextResponse.json(formattedGames);
+  } catch (error) {
+    console.error("Veritabanı bağlantı hatası:", error);
+    return NextResponse.json({ error: "Veritabanına bağlanılamadı" }, { status: 500 });
+  }
 }
